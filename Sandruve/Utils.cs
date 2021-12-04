@@ -1,7 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace Sandruve
 {
@@ -36,6 +39,14 @@ namespace Sandruve
             {
                 return null;
             }
+        }
+
+        public static JArray ParseURL(string urlToParse)
+        {
+            var client = new WebClient();
+            client.Headers.Add("User-Agent", "Sandruve");
+            string content = client.DownloadString(urlToParse);
+            return JArray.Parse(content);
         }
     }
 }

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sandruve
 {
     static class Program
     {
+        public static string version = "0.5";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

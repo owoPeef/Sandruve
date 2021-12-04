@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Sandruve
 {
@@ -70,6 +71,11 @@ namespace Sandruve
         {
             Thread updateTh = new Thread(() => update());
             updateTh.Start();
+
+            this.MinimumSize = new Size(this.Width, this.Height);
+            this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
         public void update()
