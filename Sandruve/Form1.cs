@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Diagnostics;
 using Sandruve.Github;
+using System.IO;
 
 namespace Sandruve
 {
@@ -15,6 +16,8 @@ namespace Sandruve
             {
                 LinkLabel.Visible = true;
                 VersionLabel.Visible = true;
+                Process.Start(@Directory.GetCurrentDirectory() + "/Updater.exe", string.Format("--ver{0}", GithubParser.GetLatestReleaseVersion()));
+                Process.GetCurrentProcess().Kill();
             }
             else
             {
