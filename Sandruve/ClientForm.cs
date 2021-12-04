@@ -182,8 +182,9 @@ namespace Sandruve
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (client.TcpClient != null)
-                client.WriteLine(string.Format("{0}", sendMsgBox.Text));
-                sendMsgBox.Text = string.Empty;
+                if (sendMsgBox.Text.Replace(" ", "").Length != 0)
+                    client.WriteLine(string.Format("{0}", sendMsgBox.Text));
+                    sendMsgBox.Text = string.Empty;
         }
 
         private void SelectImageToSendBtn_Click(object sender, EventArgs e)

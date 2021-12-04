@@ -46,22 +46,25 @@ namespace Sandruve
             this.outputTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
             this.outputTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.outputTxt.Enabled = false;
+            this.outputTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outputTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.outputTxt.Location = new System.Drawing.Point(12, 137);
+            this.outputTxt.Location = new System.Drawing.Point(12, 145);
             this.outputTxt.Multiline = true;
             this.outputTxt.Name = "outputTxt";
             this.outputTxt.ReadOnly = true;
-            this.outputTxt.Size = new System.Drawing.Size(776, 318);
+            this.outputTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.outputTxt.Size = new System.Drawing.Size(776, 310);
             this.outputTxt.TabIndex = 5;
             // 
             // HostBox
             // 
             this.HostBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
             this.HostBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.HostBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.HostBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.HostBox.Location = new System.Drawing.Point(12, 62);
             this.HostBox.Name = "HostBox";
-            this.HostBox.Size = new System.Drawing.Size(100, 13);
+            this.HostBox.Size = new System.Drawing.Size(100, 15);
             this.HostBox.TabIndex = 6;
             this.HostBox.Text = "127.0.0.1:8910";
             this.HostBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -69,10 +72,11 @@ namespace Sandruve
             // connectBtn
             // 
             this.connectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.connectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.connectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.connectBtn.Location = new System.Drawing.Point(121, 9);
             this.connectBtn.Name = "connectBtn";
-            this.connectBtn.Size = new System.Drawing.Size(97, 29);
+            this.connectBtn.Size = new System.Drawing.Size(115, 29);
             this.connectBtn.TabIndex = 4;
             this.connectBtn.Text = "Подключиться";
             this.connectBtn.UseVisualStyleBackColor = true;
@@ -81,10 +85,11 @@ namespace Sandruve
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.label1.Location = new System.Drawing.Point(8, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Хост:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,23 +97,24 @@ namespace Sandruve
             // sendMsgBox
             // 
             this.sendMsgBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
-            this.sendMsgBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sendMsgBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sendMsgBox.Enabled = false;
+            this.sendMsgBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.sendMsgBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.sendMsgBox.Location = new System.Drawing.Point(12, 81);
-            this.sendMsgBox.Multiline = true;
+            this.sendMsgBox.Location = new System.Drawing.Point(11, 82);
             this.sendMsgBox.Name = "sendMsgBox";
-            this.sendMsgBox.Size = new System.Drawing.Size(776, 21);
+            this.sendMsgBox.Size = new System.Drawing.Size(776, 22);
             this.sendMsgBox.TabIndex = 7;
             // 
             // sendBtn
             // 
             this.sendBtn.Enabled = false;
             this.sendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.sendBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.sendBtn.Location = new System.Drawing.Point(713, 108);
+            this.sendBtn.Location = new System.Drawing.Point(690, 108);
             this.sendBtn.Name = "sendBtn";
-            this.sendBtn.Size = new System.Drawing.Size(75, 23);
+            this.sendBtn.Size = new System.Drawing.Size(98, 31);
             this.sendBtn.TabIndex = 4;
             this.sendBtn.Text = "Отправить";
             this.sendBtn.UseVisualStyleBackColor = true;
@@ -118,10 +124,11 @@ namespace Sandruve
             // 
             this.NickBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
             this.NickBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.NickBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NickBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.NickBox.Location = new System.Drawing.Point(12, 25);
             this.NickBox.Name = "NickBox";
-            this.NickBox.Size = new System.Drawing.Size(100, 13);
+            this.NickBox.Size = new System.Drawing.Size(100, 15);
             this.NickBox.TabIndex = 6;
             this.NickBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -129,10 +136,11 @@ namespace Sandruve
             // 
             this.SelectImageToSendBtn.Enabled = false;
             this.SelectImageToSendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SelectImageToSendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SelectImageToSendBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.SelectImageToSendBtn.Location = new System.Drawing.Point(617, 108);
+            this.SelectImageToSendBtn.Location = new System.Drawing.Point(571, 108);
             this.SelectImageToSendBtn.Name = "SelectImageToSendBtn";
-            this.SelectImageToSendBtn.Size = new System.Drawing.Size(90, 23);
+            this.SelectImageToSendBtn.Size = new System.Drawing.Size(113, 31);
             this.SelectImageToSendBtn.TabIndex = 4;
             this.SelectImageToSendBtn.Text = "Изображение";
             this.SelectImageToSendBtn.UseVisualStyleBackColor = true;
@@ -142,10 +150,11 @@ namespace Sandruve
             // 
             this.disconnectBtn.Enabled = false;
             this.disconnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.disconnectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.disconnectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.disconnectBtn.Location = new System.Drawing.Point(121, 46);
             this.disconnectBtn.Name = "disconnectBtn";
-            this.disconnectBtn.Size = new System.Drawing.Size(97, 29);
+            this.disconnectBtn.Size = new System.Drawing.Size(115, 29);
             this.disconnectBtn.TabIndex = 4;
             this.disconnectBtn.Text = "Отключиться";
             this.disconnectBtn.UseVisualStyleBackColor = true;
@@ -154,10 +163,11 @@ namespace Sandruve
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.label2.Location = new System.Drawing.Point(8, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(36, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Ник:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

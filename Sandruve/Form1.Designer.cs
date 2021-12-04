@@ -36,10 +36,11 @@ namespace Sandruve
             // hostBtn
             // 
             this.hostBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hostBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.hostBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.hostBtn.Location = new System.Drawing.Point(10, 12);
+            this.hostBtn.Location = new System.Drawing.Point(12, 12);
             this.hostBtn.Name = "hostBtn";
-            this.hostBtn.Size = new System.Drawing.Size(91, 23);
+            this.hostBtn.Size = new System.Drawing.Size(114, 30);
             this.hostBtn.TabIndex = 0;
             this.hostBtn.Text = "Создать";
             this.hostBtn.UseVisualStyleBackColor = true;
@@ -48,10 +49,11 @@ namespace Sandruve
             // conBtn
             // 
             this.conBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.conBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.conBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
-            this.conBtn.Location = new System.Drawing.Point(107, 12);
+            this.conBtn.Location = new System.Drawing.Point(172, 12);
             this.conBtn.Name = "conBtn";
-            this.conBtn.Size = new System.Drawing.Size(91, 23);
+            this.conBtn.Size = new System.Drawing.Size(114, 30);
             this.conBtn.TabIndex = 0;
             this.conBtn.Text = "Подключиться";
             this.conBtn.UseVisualStyleBackColor = true;
@@ -62,7 +64,7 @@ namespace Sandruve
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(210, 44);
+            this.ClientSize = new System.Drawing.Size(298, 54);
             this.Controls.Add(this.conBtn);
             this.Controls.Add(this.hostBtn);
             this.MaximizeBox = false;

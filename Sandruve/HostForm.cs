@@ -132,7 +132,7 @@ namespace Sandruve
                 }
                 else
                 {
-                    string txt = formatedStr + Environment.NewLine;
+                    string txt = formatedStr;
                     if (e.Data != null)
                     {
                         byte[] byteData = e.Data;
