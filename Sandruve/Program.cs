@@ -5,7 +5,7 @@ namespace Sandruve
 {
     static class Program
     {
-        public static string version = "1.0";
+        public static string version = "0.5";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

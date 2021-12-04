@@ -41,18 +41,22 @@ namespace Sandruve
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(345, 9);
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 23);
+            this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Хост:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // startBtn
             // 
-            this.startBtn.Location = new System.Drawing.Point(419, 33);
+            this.startBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.startBtn.Location = new System.Drawing.Point(12, 44);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(75, 23);
+            this.startBtn.Size = new System.Drawing.Size(75, 22);
             this.startBtn.TabIndex = 1;
             this.startBtn.Text = "Запустить";
             this.startBtn.UseVisualStyleBackColor = true;
@@ -60,27 +64,35 @@ namespace Sandruve
             // 
             // HostBox
             // 
-            this.HostBox.Location = new System.Drawing.Point(313, 35);
+            this.HostBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.HostBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.HostBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.HostBox.Location = new System.Drawing.Point(12, 25);
             this.HostBox.Name = "HostBox";
-            this.HostBox.Size = new System.Drawing.Size(100, 20);
+            this.HostBox.Size = new System.Drawing.Size(100, 13);
             this.HostBox.TabIndex = 2;
             this.HostBox.Text = "127.0.0.1:8910";
             this.HostBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // outputTxt
             // 
-            this.outputTxt.Location = new System.Drawing.Point(12, 61);
+            this.outputTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.outputTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.outputTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.outputTxt.Location = new System.Drawing.Point(12, 74);
             this.outputTxt.Multiline = true;
             this.outputTxt.Name = "outputTxt";
             this.outputTxt.ReadOnly = true;
-            this.outputTxt.Size = new System.Drawing.Size(635, 381);
+            this.outputTxt.Size = new System.Drawing.Size(635, 364);
             this.outputTxt.TabIndex = 2;
             // 
             // listeningsCountLabel
             // 
-            this.listeningsCountLabel.Location = new System.Drawing.Point(653, 9);
+            this.listeningsCountLabel.AutoSize = true;
+            this.listeningsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.listeningsCountLabel.Location = new System.Drawing.Point(706, 9);
             this.listeningsCountLabel.Name = "listeningsCountLabel";
-            this.listeningsCountLabel.Size = new System.Drawing.Size(135, 15);
+            this.listeningsCountLabel.Size = new System.Drawing.Size(82, 13);
             this.listeningsCountLabel.TabIndex = 3;
             this.listeningsCountLabel.Text = "Подключено: 0";
             this.listeningsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -88,15 +100,20 @@ namespace Sandruve
             // 
             // listeningsDisplayedList
             // 
+            this.listeningsDisplayedList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.listeningsDisplayedList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listeningsDisplayedList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.listeningsDisplayedList.FormattingEnabled = true;
-            this.listeningsDisplayedList.Location = new System.Drawing.Point(656, 61);
+            this.listeningsDisplayedList.Location = new System.Drawing.Point(653, 74);
             this.listeningsDisplayedList.Name = "listeningsDisplayedList";
-            this.listeningsDisplayedList.Size = new System.Drawing.Size(132, 381);
+            this.listeningsDisplayedList.Size = new System.Drawing.Size(135, 364);
             this.listeningsDisplayedList.TabIndex = 4;
             // 
             // kickUserBtn
             // 
-            this.kickUserBtn.Location = new System.Drawing.Point(656, 35);
+            this.kickUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.kickUserBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.kickUserBtn.Location = new System.Drawing.Point(653, 45);
             this.kickUserBtn.Name = "kickUserBtn";
             this.kickUserBtn.Size = new System.Drawing.Size(59, 23);
             this.kickUserBtn.TabIndex = 1;
@@ -106,7 +123,9 @@ namespace Sandruve
             // 
             // banUserBtn
             // 
-            this.banUserBtn.Location = new System.Drawing.Point(729, 35);
+            this.banUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.banUserBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.banUserBtn.Location = new System.Drawing.Point(729, 45);
             this.banUserBtn.Name = "banUserBtn";
             this.banUserBtn.Size = new System.Drawing.Size(59, 23);
             this.banUserBtn.TabIndex = 5;
@@ -118,6 +137,7 @@ namespace Sandruve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.banUserBtn);
             this.Controls.Add(this.listeningsDisplayedList);

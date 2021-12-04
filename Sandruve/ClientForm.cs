@@ -48,23 +48,17 @@ namespace Sandruve
                 Text = string.Format("Sandruve - Клиент (Подключен к {0})", ip);
             } catch (SocketException) {
                 MessageBox.Show(string.Format("Подключение не установлено, так как конечный компьютер отверг запрос на подключение {0}.", ip + ":" + port), "Неизвестный хост", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                client = null;
                 nick = string.Empty;
             }
         }
 
         public void DisconnectFromTCPServer()
         {
-            try
-            {
-                client.Disconnect();
-                client = null;
-                nick = string.Empty;
-                Text = "Sandruve - Клиент";
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(string.Format("Exception called while DisconnectFromTCPServer()={0}", exc.StackTrace));
-            }
+            client.Disconnect();
+            client = null;
+            nick = string.Empty;
+            Text = "Sandruve - Клиент";
         }
 
         private void ClientForm_Load(object sender, EventArgs e)

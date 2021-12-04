@@ -14,21 +14,9 @@ namespace Sandruve
             bool newVerAvailable = GithubParser.IsNewVersionAvailable();
             if (newVerAvailable)
             {
-                LinkLabel.Visible = true;
-                VersionLabel.Visible = true;
                 Process.Start(@Directory.GetCurrentDirectory() + "/Updater.exe", string.Format("--ver{0}", GithubParser.GetLatestReleaseVersion()));
                 Process.GetCurrentProcess().Kill();
             }
-            else
-            {
-                LinkLabel.Visible = false;
-                VersionLabel.Visible = false;
-            }
-        }
-
-        private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/owoPeef/Sandruve/releases/latest");
         }
 
         private void hostBtn_Click(object sender, EventArgs e)

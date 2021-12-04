@@ -31,12 +31,12 @@ namespace Sandruve
         {
             this.hostBtn = new System.Windows.Forms.Button();
             this.conBtn = new System.Windows.Forms.Button();
-            this.VersionLabel = new System.Windows.Forms.Label();
-            this.LinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // hostBtn
             // 
+            this.hostBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hostBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.hostBtn.Location = new System.Drawing.Point(10, 12);
             this.hostBtn.Name = "hostBtn";
             this.hostBtn.Size = new System.Drawing.Size(91, 23);
@@ -47,6 +47,8 @@ namespace Sandruve
             // 
             // conBtn
             // 
+            this.conBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.conBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
             this.conBtn.Location = new System.Drawing.Point(107, 12);
             this.conBtn.Name = "conBtn";
             this.conBtn.Size = new System.Drawing.Size(91, 23);
@@ -55,35 +57,12 @@ namespace Sandruve
             this.conBtn.UseVisualStyleBackColor = true;
             this.conBtn.Click += new System.EventHandler(this.conBtn_Click);
             // 
-            // VersionLabel
-            // 
-            this.VersionLabel.AutoSize = true;
-            this.VersionLabel.Location = new System.Drawing.Point(7, 38);
-            this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(131, 13);
-            this.VersionLabel.TabIndex = 1;
-            this.VersionLabel.Text = "Доступна новая версия!";
-            this.VersionLabel.Visible = false;
-            // 
-            // LinkLabel
-            // 
-            this.LinkLabel.AutoSize = true;
-            this.LinkLabel.Location = new System.Drawing.Point(144, 38);
-            this.LinkLabel.Name = "LinkLabel";
-            this.LinkLabel.Size = new System.Drawing.Size(48, 13);
-            this.LinkLabel.TabIndex = 2;
-            this.LinkLabel.TabStop = true;
-            this.LinkLabel.Text = "Скачать";
-            this.LinkLabel.Visible = false;
-            this.LinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
-            // 
             // Sandruve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(210, 60);
-            this.Controls.Add(this.LinkLabel);
-            this.Controls.Add(this.VersionLabel);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.ClientSize = new System.Drawing.Size(210, 44);
             this.Controls.Add(this.conBtn);
             this.Controls.Add(this.hostBtn);
             this.MaximizeBox = false;
@@ -91,7 +70,6 @@ namespace Sandruve
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sandruve";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -99,8 +77,6 @@ namespace Sandruve
 
         private System.Windows.Forms.Button hostBtn;
         private System.Windows.Forms.Button conBtn;
-        private System.Windows.Forms.Label VersionLabel;
-        private System.Windows.Forms.LinkLabel LinkLabel;
     }
 }
 
