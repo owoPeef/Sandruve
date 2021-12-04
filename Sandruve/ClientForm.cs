@@ -36,61 +36,18 @@ namespace Sandruve
         {
             try
             {
+                client = new SimpleTcpClient();
+                client.StringEncoder = Encoding.UTF8;
+                client.DataReceived += Client_DataReceived;
                 client.Connect(ip, port);
                 NickBox.Invoke((MethodInvoker)delegate {
                     nick = NickBox.Text;
-                    NickBox.Enabled = false;
                 });
                 client.WriteLine(string.Format("nickname: {0}", nick));
-                connectBtn.Invoke((MethodInvoker)delegate {
-                    connectBtn.Enabled = false;
-                });
-                disconnectBtn.Invoke((MethodInvoker)delegate {
-                    disconnectBtn.Enabled = true;
-                });
-                HostBox.Invoke((MethodInvoker)delegate {
-                    HostBox.ReadOnly = true;
-                });
-                sendMsgBox.Invoke((MethodInvoker)delegate {
-                    sendMsgBox.Enabled = true;
-                });
-                SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
-                    SelectImageToSendBtn.Enabled = true;
-                });
-                sendBtn.Invoke((MethodInvoker)delegate {
-                    sendBtn.Enabled = true;
-                });
-                outputTxt.Invoke((MethodInvoker)delegate {
-                    outputTxt.Enabled = true;
-                });
                 Text = string.Format("Sandruve - Клиент (Подключен к {0})", ip);
             } catch (SocketException) {
                 MessageBox.Show(string.Format("Подключение не установлено, так как конечный компьютер отверг запрос на подключение {0}.", ip + ":" + port), "Неизвестный хост", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                NickBox.Invoke((MethodInvoker)delegate {
-                    nick = string.Empty;
-                    NickBox.Enabled = true;
-                });
-                connectBtn.Invoke((MethodInvoker)delegate {
-                    connectBtn.Enabled = true;
-                });
-                disconnectBtn.Invoke((MethodInvoker)delegate {
-                    disconnectBtn.Enabled = false;
-                });
-                HostBox.Invoke((MethodInvoker)delegate {
-                    HostBox.ReadOnly = false;
-                });
-                sendMsgBox.Invoke((MethodInvoker)delegate {
-                    sendMsgBox.Enabled = false;
-                });
-                SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
-                    SelectImageToSendBtn.Enabled = false;
-                });
-                sendBtn.Invoke((MethodInvoker)delegate {
-                    sendBtn.Enabled = false;
-                });
-                outputTxt.Invoke((MethodInvoker)delegate {
-                    outputTxt.Enabled = false;
-                });
+                nick = string.Empty;
             }
         }
 
@@ -99,31 +56,8 @@ namespace Sandruve
             try
             {
                 client.Disconnect();
-                NickBox.Invoke((MethodInvoker)delegate {
-                    nick = string.Empty;
-                    NickBox.Enabled = true;
-                });
-                connectBtn.Invoke((MethodInvoker)delegate {
-                    connectBtn.Enabled = true;
-                });
-                disconnectBtn.Invoke((MethodInvoker)delegate {
-                    disconnectBtn.Enabled = false;
-                });
-                HostBox.Invoke((MethodInvoker)delegate {
-                    HostBox.ReadOnly = false;
-                });
-                sendMsgBox.Invoke((MethodInvoker)delegate {
-                    sendMsgBox.Enabled = false;
-                });
-                SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
-                    SelectImageToSendBtn.Enabled = false;
-                });
-                sendBtn.Invoke((MethodInvoker)delegate {
-                    sendBtn.Enabled = false;
-                });
-                outputTxt.Invoke((MethodInvoker)delegate {
-                    outputTxt.Text = "";
-                });
+                client = null;
+                nick = string.Empty;
                 Text = "Sandruve - Клиент";
             }
             catch (Exception exc)
@@ -136,37 +70,86 @@ namespace Sandruve
         {
             Thread updateTh = new Thread(() => update());
             updateTh.Start();
-            client = new SimpleTcpClient();
-            client.StringEncoder = Encoding.UTF8;
-            client.DataReceived += Client_DataReceived;
         }
 
         public void update()
         {
             while (true)
             {
-                if (nick.Length == 0)
+                if (client == null)
                 {
-                    string nickname = string.Empty;
-                    NickBox.Invoke((MethodInvoker)delegate {
-                        nickname = NickBox.Text;
+                    if (nick.Length == 0)
+                    {
+                        string nickname = string.Empty;
+                        NickBox.Invoke((MethodInvoker)delegate {
+                            nickname = NickBox.Text;
+                        });
+                        string host = string.Empty;
+                        HostBox.Invoke((MethodInvoker)delegate {
+                            host = HostBox.Text;
+                        });
+                        if (nickname.Length != 0 && host.Length != 0)
+                        {
+                            connectBtn.Invoke((MethodInvoker)delegate {
+                                connectBtn.Enabled = true;
+                            });
+                        }
+                        else
+                        {
+                            connectBtn.Invoke((MethodInvoker)delegate {
+                                connectBtn.Enabled = false;
+                            });
+                        }
+                    }
+                    outputTxt.Invoke((MethodInvoker)delegate {
+                        outputTxt.Enabled = false;
+                        outputTxt.Text = "";
                     });
-                    string host = string.Empty;
+                    sendMsgBox.Invoke((MethodInvoker)delegate {
+                        sendMsgBox.Enabled = false;
+                    });
+                    disconnectBtn.Invoke((MethodInvoker)delegate {
+                        disconnectBtn.Enabled = false;
+                    });
+                    sendBtn.Invoke((MethodInvoker)delegate {
+                        sendBtn.Enabled = false;
+                    });
+                    SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
+                        SelectImageToSendBtn.Enabled = false;
+                    });
                     HostBox.Invoke((MethodInvoker)delegate {
-                        host = HostBox.Text;
+                        HostBox.ReadOnly = false;
                     });
-                    if (nickname.Length != 0 && host.Length != 0)
-                    {
-                        connectBtn.Invoke((MethodInvoker)delegate {
-                            connectBtn.Enabled = true;
-                        });
-                    }
-                    else
-                    {
-                        connectBtn.Invoke((MethodInvoker)delegate {
-                            connectBtn.Enabled = false;
-                        });
-                    }
+                    NickBox.Invoke((MethodInvoker)delegate {
+                        NickBox.ReadOnly = false;
+                    });
+                }
+                else
+                {
+                    connectBtn.Invoke((MethodInvoker)delegate {
+                        connectBtn.Enabled = false;
+                    });
+                    outputTxt.Invoke((MethodInvoker)delegate {
+                        outputTxt.Enabled = true;
+                    });
+                    sendMsgBox.Invoke((MethodInvoker)delegate {
+                        sendMsgBox.Enabled = true;
+                    });
+                    disconnectBtn.Invoke((MethodInvoker)delegate {
+                        disconnectBtn.Enabled = true;
+                    });
+                    sendBtn.Invoke((MethodInvoker)delegate {
+                        sendBtn.Enabled = true;
+                    });
+                    SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
+                        SelectImageToSendBtn.Enabled = true;
+                    });
+                    HostBox.Invoke((MethodInvoker)delegate {
+                        HostBox.ReadOnly = true;
+                    });
+                    NickBox.Invoke((MethodInvoker)delegate {
+                        NickBox.ReadOnly = true;
+                    });
                 }
             }
         }
@@ -176,7 +159,23 @@ namespace Sandruve
             outputTxt.Invoke((MethodInvoker)delegate {
                 string text = e.MessageString;
                 string reformatedStr = Utils.ReformatString(text);
-                outputTxt.Text = reformatedStr;
+                if (reformatedStr.StartsWith("ban") || reformatedStr.StartsWith("kick"))
+                {
+                    string[] splitedStr = reformatedStr.Split(new char[] { ':' });
+                    string action = splitedStr[0];
+                    string nickToAction = splitedStr[1].Replace(" ", "");
+                    if (nickToAction == nick)
+                    {
+                        if (action == "kick" || action == "ban")
+                        {
+                            DisconnectFromTCPServer();
+                        }
+                    }
+                }
+                else
+                {
+                    outputTxt.Text = reformatedStr;
+                }
             });
         }
 

@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Sandruve
 {
@@ -26,6 +27,7 @@ namespace Sandruve
         List<IPAddress> listeningAddresses = new List<IPAddress>();
         List<int> listeningPorts = new List<int>();
         List<string> listeningNicknames = new List<string>();
+        List<IPAddress> blacklistedIPs = new List<IPAddress>();
 
         private void HostForm_Load(object sender, EventArgs e)
         {
@@ -72,79 +74,103 @@ namespace Sandruve
             });
         }
 
+        public bool lastBlackListed = false;
         private void Server_ClientConnected(object sender, TcpClient e)
         {
-            listeningEndPoints.Add(e.Client.RemoteEndPoint);
-            string[] splitedStr = e.Client.RemoteEndPoint.ToString().Split(new char[] { ':' });
-            IPAddress ip = IPAddress.Parse(splitedStr[0]);
-            int port = int.Parse(splitedStr[1]);
-            listeningAddresses.Add(IPAddress.Parse(ip.ToString()));
-            listeningPorts.Add(port);
-            string txt = string.Format("{0} подключился.", e.Client.RemoteEndPoint);
-            listeningCount++;
-            listeningsCountLabel.Invoke((MethodInvoker)delegate {
-                listeningsCountLabel.Text = string.Format("Подключено: {0}", listeningCount);
-            });
-            outputTxt.Invoke((MethodInvoker)delegate {
-                if (clientsText.Length == 0)
+            foreach (IPAddress ipToCheck in blacklistedIPs)
+            {
+                if (ipToCheck.ToString() == e.Client.RemoteEndPoint.ToString().Split(new char[] { ':' })[0])
                 {
-                    clientsText += txt;
+                    lastBlackListed = true;
+                    break;
                 }
-                else if (clientsText.Length > 0)
-                {
-                    clientsText += Environment.NewLine + txt;
-                }
-                outputTxt.Text += Environment.NewLine + txt;
-                server.BroadcastLine(clientsText);
-            });
+            }
+            if (!lastBlackListed)
+            {
+                listeningEndPoints.Add(e.Client.RemoteEndPoint);
+                string[] splitedStr = e.Client.RemoteEndPoint.ToString().Split(new char[] { ':' });
+                IPAddress ip = IPAddress.Parse(splitedStr[0]);
+                int port = int.Parse(splitedStr[1]);
+                listeningAddresses.Add(IPAddress.Parse(ip.ToString()));
+                listeningPorts.Add(port);
+                string txt = string.Format("{0} подключился.", e.Client.RemoteEndPoint);
+                listeningCount++;
+                listeningsCountLabel.Invoke((MethodInvoker)delegate {
+                    listeningsCountLabel.Text = string.Format("Подключено: {0}", listeningCount);
+                });
+                outputTxt.Invoke((MethodInvoker)delegate {
+                    if (clientsText.Length == 0)
+                    {
+                        clientsText += txt;
+                    }
+                    else if (clientsText.Length > 0)
+                    {
+                        clientsText += Environment.NewLine + txt;
+                    }
+                    outputTxt.Text += Environment.NewLine + txt;
+                    server.BroadcastLine(clientsText);
+                });
+            }
+            else
+            {
+                Console.WriteLine("IP: {0} was BlackListed", e.Client.RemoteEndPoint);
+                e.Close();
+            }
         }
 
         private void Server_DataReceived(object sender, SimpleTCP.Message e)
         {
-            string formatedStr = Utils.ReformatString(e.MessageString);
-            if (formatedStr.StartsWith("nickname"))
+            if (!lastBlackListed)
             {
-                string a = formatedStr.Split(new char[] { ':' })[1].Replace(" ", "");
-                listeningNicknames.Add(a);
-                Console.WriteLine(string.Format("new listener ({0}:{1}, {2})", listeningAddresses[listeningAddresses.Count-1], listeningPorts[listeningPorts.Count-1], listeningNicknames[listeningNicknames.Count-1]));
-                ClientUpdate();
-            }
-            else
-            {
-                string txt = formatedStr + Environment.NewLine;
-                if (e.Data != null)
+                string formatedStr = Utils.ReformatString(e.MessageString);
+                if (formatedStr.StartsWith("nickname"))
                 {
-                    byte[] byteData = e.Data;
-                    string fileExt = Utils.GetMimeTypeFromImageByteArray(byteData);
-                    if (fileExt != null)
+                    string a = formatedStr.Split(new char[] { ':' })[1].Replace(" ", "");
+                    listeningNicknames.Add(a);
+                    Console.WriteLine(string.Format("new listener ({0}:{1}, {2})", listeningAddresses[listeningAddresses.Count - 1], listeningPorts[listeningPorts.Count - 1], listeningNicknames[listeningNicknames.Count - 1]));
+                    ClientUpdate();
+                }
+                else
+                {
+                    string txt = formatedStr + Environment.NewLine;
+                    if (e.Data != null)
                     {
-                        if (fileExt == "image/png" || fileExt == "image/jpeg")
+                        byte[] byteData = e.Data;
+                        string fileExt = Utils.GetMimeTypeFromImageByteArray(byteData);
+                        if (fileExt != null)
                         {
-                            using (var ms = new MemoryStream(byteData))
+                            if (fileExt == "image/png" || fileExt == "image/jpeg")
                             {
-                                string savedFileExt = fileExt.Split(new char[] { '/' })[1].Replace("e", string.Empty);
-                                using (var fs = new FileStream(string.Format(@"E:\GitHub\VisualStudio\Sandruve\Sandruve\bin\Debug\test.{0}", savedFileExt), FileMode.Create))
+                                using (var ms = new MemoryStream(byteData))
                                 {
-                                    ms.WriteTo(fs);
+                                    string savedFileExt = fileExt.Split(new char[] { '/' })[1].Replace("e", string.Empty);
+                                    using (var fs = new FileStream(string.Format(@"E:\GitHub\VisualStudio\Sandruve\Sandruve\bin\Debug\test.{0}", savedFileExt), FileMode.Create))
+                                    {
+                                        ms.WriteTo(fs);
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                outputTxt.Invoke((MethodInvoker)delegate {
-                    string userSender = string.Empty;
-                    int i = 0;
-                    foreach (EndPoint ep in listeningEndPoints)
-                    {
-                        if (ep == e.TcpClient.Client.RemoteEndPoint)
+                    outputTxt.Invoke((MethodInvoker)delegate {
+                        string userSender = string.Empty;
+                        int i = 0;
+                        foreach (EndPoint ep in listeningEndPoints)
                         {
-                            clientsText += string.Format("{0}{1}: {2}", Environment.NewLine, listeningNicknames[i], txt);
-                            outputTxt.Text += string.Format("{0}{1}: {2}", Environment.NewLine, listeningNicknames[i], txt);
+                            if (ep == e.TcpClient.Client.RemoteEndPoint)
+                            {
+                                clientsText += string.Format("{0}{1}: {2}", Environment.NewLine, listeningNicknames[i], txt);
+                                outputTxt.Text += string.Format("{0}{1}: {2}", Environment.NewLine, listeningNicknames[i], txt);
+                            }
+                            i++;
                         }
-                        i++;
-                    }
-                    server.BroadcastLine(clientsText);
-                });
+                        server.BroadcastLine(clientsText);
+                    });
+                }
+            }
+            else
+            {
+                lastBlackListed = false;
             }
         }
 
@@ -179,6 +205,50 @@ namespace Sandruve
                 HostBox.ReadOnly = false;
                 startBtn.Enabled = true;
                 listeningsCountLabel.Visible = false;
+            }
+        }
+
+        private void kickUserBtn_Click(object sender, EventArgs e)
+        {
+            string selectedUser = (string)listeningsDisplayedList.SelectedItem;
+            string[] selecterUserArray = selectedUser.Split(new char[] { ' ' });
+            string nick = selecterUserArray[0];
+            int port = int.Parse(selecterUserArray[1].Replace("(", "").Replace(")", ""));
+            string nickToKick = null;
+            foreach (string currNickname in listeningNicknames)
+            {
+                if (currNickname == nick)
+                {
+                    nickToKick = currNickname;
+                    break;
+                }
+            }
+            server.BroadcastLine(string.Format("kick: {0}", nickToKick));
+        }
+
+        private void banUserBtn_Click(object sender, EventArgs e)
+        {
+            string selectedUser = (string)listeningsDisplayedList.SelectedItem;
+            if (selectedUser != null)
+            {
+                string[] selecterUserArray = selectedUser.Split(new char[] { ' ' });
+                string nick = selecterUserArray[0];
+                int port = int.Parse(selecterUserArray[1].Replace("(", "").Replace(")", ""));
+                string nickToBan = null;
+                IPAddress ipToBan = null;
+                int i = 0;
+                foreach (string currNickname in listeningNicknames)
+                {
+                    if (currNickname == nick)
+                    {
+                        nickToBan = currNickname;
+                        ipToBan = listeningAddresses[i];
+                        break;
+                    }
+                    i++;
+                }
+                blacklistedIPs.Add(ipToBan);
+                server.BroadcastLine(string.Format("ban: {0}", nickToBan));
             }
         }
 

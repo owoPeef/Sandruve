@@ -35,6 +35,8 @@ namespace Sandruve
             this.outputTxt = new System.Windows.Forms.TextBox();
             this.listeningsCountLabel = new System.Windows.Forms.Label();
             this.listeningsDisplayedList = new System.Windows.Forms.ListBox();
+            this.kickUserBtn = new System.Windows.Forms.Button();
+            this.banUserBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -92,15 +94,37 @@ namespace Sandruve
             this.listeningsDisplayedList.Size = new System.Drawing.Size(132, 381);
             this.listeningsDisplayedList.TabIndex = 4;
             // 
+            // kickUserBtn
+            // 
+            this.kickUserBtn.Location = new System.Drawing.Point(656, 35);
+            this.kickUserBtn.Name = "kickUserBtn";
+            this.kickUserBtn.Size = new System.Drawing.Size(59, 23);
+            this.kickUserBtn.TabIndex = 1;
+            this.kickUserBtn.Text = "Кик";
+            this.kickUserBtn.UseVisualStyleBackColor = true;
+            this.kickUserBtn.Click += new System.EventHandler(this.kickUserBtn_Click);
+            // 
+            // banUserBtn
+            // 
+            this.banUserBtn.Location = new System.Drawing.Point(729, 35);
+            this.banUserBtn.Name = "banUserBtn";
+            this.banUserBtn.Size = new System.Drawing.Size(59, 23);
+            this.banUserBtn.TabIndex = 5;
+            this.banUserBtn.Text = "Бан";
+            this.banUserBtn.UseVisualStyleBackColor = true;
+            this.banUserBtn.Click += new System.EventHandler(this.banUserBtn_Click);
+            // 
             // HostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.banUserBtn);
             this.Controls.Add(this.listeningsDisplayedList);
             this.Controls.Add(this.listeningsCountLabel);
             this.Controls.Add(this.outputTxt);
             this.Controls.Add(this.HostBox);
+            this.Controls.Add(this.kickUserBtn);
             this.Controls.Add(this.startBtn);
             this.Controls.Add(this.label1);
             this.Name = "HostForm";
@@ -120,5 +144,7 @@ namespace Sandruve
         private System.Windows.Forms.TextBox outputTxt;
         private System.Windows.Forms.Label listeningsCountLabel;
         private System.Windows.Forms.ListBox listeningsDisplayedList;
+        private System.Windows.Forms.Button kickUserBtn;
+        private System.Windows.Forms.Button banUserBtn;
     }
 }
