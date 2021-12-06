@@ -39,6 +39,9 @@ namespace Sandruve
             this.SelectImageToSendBtn = new System.Windows.Forms.Button();
             this.disconnectBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.SelectVideoToSendBtn = new System.Windows.Forms.Button();
+            this.VideoUploadingProgress = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.VideoUploadingProgress)).BeginInit();
             this.SuspendLayout();
             // 
             // outputTxt
@@ -172,16 +175,41 @@ namespace Sandruve
             this.label2.Text = "Ник:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // SelectVideoToSendBtn
+            // 
+            this.SelectVideoToSendBtn.Enabled = false;
+            this.SelectVideoToSendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SelectVideoToSendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectVideoToSendBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(131)))), ((int)(((byte)(131)))));
+            this.SelectVideoToSendBtn.Location = new System.Drawing.Point(452, 108);
+            this.SelectVideoToSendBtn.Name = "SelectVideoToSendBtn";
+            this.SelectVideoToSendBtn.Size = new System.Drawing.Size(113, 31);
+            this.SelectVideoToSendBtn.TabIndex = 4;
+            this.SelectVideoToSendBtn.Text = "Видео";
+            this.SelectVideoToSendBtn.UseVisualStyleBackColor = true;
+            this.SelectVideoToSendBtn.Click += new System.EventHandler(this.SelectVideoToSendBtn_Click);
+            // 
+            // VideoUploadingProgress
+            // 
+            this.VideoUploadingProgress.LargeChange = 1;
+            this.VideoUploadingProgress.Location = new System.Drawing.Point(242, 31);
+            this.VideoUploadingProgress.Maximum = 100;
+            this.VideoUploadingProgress.Name = "VideoUploadingProgress";
+            this.VideoUploadingProgress.Size = new System.Drawing.Size(545, 45);
+            this.VideoUploadingProgress.TabIndex = 8;
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(800, 466);
+            this.Controls.Add(this.VideoUploadingProgress);
             this.Controls.Add(this.sendMsgBox);
             this.Controls.Add(this.outputTxt);
             this.Controls.Add(this.NickBox);
             this.Controls.Add(this.HostBox);
+            this.Controls.Add(this.SelectVideoToSendBtn);
             this.Controls.Add(this.SelectImageToSendBtn);
             this.Controls.Add(this.sendBtn);
             this.Controls.Add(this.disconnectBtn);
@@ -192,6 +220,7 @@ namespace Sandruve
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sandruve - Клиент";
             this.Load += new System.EventHandler(this.ClientForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.VideoUploadingProgress)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +238,7 @@ namespace Sandruve
         private System.Windows.Forms.Button SelectImageToSendBtn;
         private System.Windows.Forms.Button disconnectBtn;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button SelectVideoToSendBtn;
+        private System.Windows.Forms.TrackBar VideoUploadingProgress;
     }
 }

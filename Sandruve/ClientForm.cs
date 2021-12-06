@@ -114,6 +114,9 @@ namespace Sandruve
                     sendBtn.Invoke((MethodInvoker)delegate {
                         sendBtn.Enabled = false;
                     });
+                    SelectVideoToSendBtn.Invoke((MethodInvoker)delegate {
+                        SelectVideoToSendBtn.Enabled = false;
+                    });
                     SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
                         SelectImageToSendBtn.Enabled = false;
                     });
@@ -140,6 +143,9 @@ namespace Sandruve
                     });
                     sendBtn.Invoke((MethodInvoker)delegate {
                         sendBtn.Enabled = true;
+                    });
+                    SelectVideoToSendBtn.Invoke((MethodInvoker)delegate {
+                        SelectVideoToSendBtn.Enabled = true;
                     });
                     SelectImageToSendBtn.Invoke((MethodInvoker)delegate {
                         SelectImageToSendBtn.Enabled = true;
@@ -194,6 +200,24 @@ namespace Sandruve
                 using (OpenFileDialog ofd = new OpenFileDialog())
                 {
                     ofd.Filter = "Изображения (*.png;*.jpg)|*.png;*.jpg";
+                    ofd.FilterIndex = 1;
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = @ofd.FileName;
+                        byte[] imgBytes = Utils.GetBytesFromFile(filePath);
+                        client.Write(imgBytes);
+                    }
+                }
+            }
+        }
+
+        private void SelectVideoToSendBtn_Click(object sender, EventArgs e)
+        {
+            if (client.TcpClient != null)
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = "Видео (*.mp4;*.avi;*.mov;*.m4v;*.mpg)|*.mp4;*.avi;*.mov;*.m4v;*.mpg";
                     ofd.FilterIndex = 1;
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {

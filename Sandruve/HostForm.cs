@@ -41,7 +41,7 @@ namespace Sandruve
 
         private void Server_ClientDisconnected(object sender, TcpClient e)
         {
-            string txt = string.Format("{0} отключился.{1}", e.Client.RemoteEndPoint, Environment.NewLine);
+            string txt = string.Format("{0} отключился.", e.Client.RemoteEndPoint);
             int i = 0;
             foreach (EndPoint lep in listeningEndPoints)
             {
@@ -118,6 +118,8 @@ namespace Sandruve
             }
         }
 
+        byte[] lastImageBytes;
+
         private void Server_DataReceived(object sender, SimpleTCP.Message e)
         {
             if (!lastBlackListed)
@@ -150,6 +152,7 @@ namespace Sandruve
                                     }
                                 }
                             }
+                            Console.WriteLine(fileExt);
                         }
                     }
                     outputTxt.Invoke((MethodInvoker)delegate {
